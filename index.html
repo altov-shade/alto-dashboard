@@ -2,450 +2,274 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Alto Dashboard</title>
+  <title>Alto AI Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255, 122, 0, 0.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(194, 24, 91, 0.12), transparent 30%),
-        linear-gradient(180deg, #08090c 0%, #101116 100%);
+        radial-gradient(circle at 20% 0%, rgba(255,122,0,0.12), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(194,24,91,0.14), transparent 30%),
+        linear-gradient(180deg, #050507 0%, #0f1014 100%);
       color: white;
-      min-height: 100vh;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     .wrapper {
-      width: 100%;
       max-width: 1400px;
-      margin: 0 auto;
-      padding: 36px 28px 60px;
+      margin: auto;
+      padding: 40px 24px 60px;
     }
 
+    /* HERO */
     .hero {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 30px;
-      padding: 34px 32px 28px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-      backdrop-filter: blur(10px);
-      margin-bottom: 28px;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(244,180,0,0.30), transparent 65%);
-      pointer-events: none;
+      padding: 36px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
     }
 
     .eyebrow {
-      display: inline-block;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
+      color: #f4b400;
+      margin-bottom: 12px;
       text-transform: uppercase;
-      color: #f6c251;
-      background: rgba(244, 180, 0, 0.10);
-      border: 1px solid rgba(244, 180, 0, 0.20);
-      padding: 10px 14px;
-      border-radius: 999px;
-      margin-bottom: 18px;
     }
 
     h1 {
       margin: 0;
-      font-size: 52px;
-      line-height: 1;
+      font-size: 54px;
       letter-spacing: -0.03em;
     }
 
     .subtext {
-      max-width: 760px;
-      margin-top: 14px;
-      color: rgba(255,255,255,0.72);
+      margin-top: 12px;
+      max-width: 700px;
+      color: rgba(255,255,255,0.7);
       font-size: 18px;
       line-height: 1.6;
     }
 
-    .hero-bottom {
+    .stats {
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: flex-end;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
-
-    .mini-stats {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .stat {
-      min-width: 140px;
-      background: rgba(0,0,0,0.28);
+      background: rgba(0,0,0,0.4);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 16px 18px;
+      padding: 16px;
+      border-radius: 16px;
+      min-width: 120px;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.48);
-      margin-bottom: 8px;
     }
 
     .stat-value {
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 6px;
     }
 
-    .section-bar {
+    /* SECTION */
+    .section {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      margin: 10px 2px 18px;
-      flex-wrap: wrap;
+      margin: 20px 0;
     }
 
-    .section-title {
+    .section h2 {
+      margin: 0;
       font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
     }
 
-    .section-pill {
-      padding: 10px 16px;
-      border-radius: 999px;
+    .pill {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 20px;
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.70);
-      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
 
-    .card-shell {
-      border-radius: 28px;
-      padding: 1px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card-shell:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
-    }
-
-    .card-inner {
-      height: 100%;
-      min-height: 220px;
-      border-radius: 28px;
-      background: rgba(18, 19, 24, 0.94);
-      border: 1px solid rgba(255,255,255,0.06);
+    .card {
+      border-radius: 24px;
       padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .icon-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      background: rgba(255,255,255,0.10);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-    }
-
-    .status {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 9px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.60);
-      white-space: nowrap;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card-copy {
-      margin-top: 18px;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .orange::after { background: radial-gradient(circle, rgba(255,122,0,0.25), transparent 70%); }
+    .gold::after { background: radial-gradient(circle, rgba(244,180,0,0.25), transparent 70%); }
+    .rose::after { background: radial-gradient(circle, rgba(194,24,91,0.25), transparent 70%); }
+    .gray::after { background: radial-gradient(circle, rgba(120,130,150,0.25), transparent 70%); }
+
+    .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
     }
 
     .card-title {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
     }
 
-    .card-desc {
-      font-size: 15px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.68);
+    .desc {
+      font-size: 14px;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.7);
     }
 
-    .card-action {
+    .btn {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+
+    .orange-btn { background: #ff7a00; color: black; }
+    .gold-btn { background: #f4b400; color: black; }
+    .rose-btn { background: #c2185b; }
+    .gray-btn { background: #7b8494; }
+
+    .footer {
       margin-top: 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      border-radius: 18px;
-      padding: 14px 16px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .card-shell:hover .card-action {
-      transform: translateY(-1px);
-    }
-
-    .orange-shell {
-      background: linear-gradient(135deg, rgba(255,122,0,0.85), rgba(255,166,0,0.35));
-    }
-
-    .gold-shell {
-      background: linear-gradient(135deg, rgba(244,180,0,0.90), rgba(255,221,87,0.35));
-    }
-
-    .rose-shell {
-      background: linear-gradient(135deg, rgba(194,24,91,0.95), rgba(255,112,98,0.30));
-    }
-
-    .gray-shell {
-      background: linear-gradient(135deg, rgba(125,132,148,0.95), rgba(176,188,204,0.28));
-    }
-
-    .orange-btn {
-      background: #ff7a00;
-      color: #111;
-    }
-
-    .gold-btn {
-      background: #f4b400;
-      color: #111;
-    }
-
-    .rose-btn {
-      background: #c2185b;
-      color: white;
-    }
-
-    .gray-btn {
-      background: #7b8494;
-      color: white;
-    }
-
-    .footer-note {
-      margin-top: 24px;
-      padding: 20px 22px;
-      border-radius: 24px;
+      padding: 18px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.68);
-      font-size: 15px;
-      line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
     }
 
-    @media (max-width: 1180px) {
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    @media(max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 760px) {
-      .wrapper {
-        padding: 22px 18px 40px;
-      }
-
-      .hero {
-        padding: 24px 20px 22px;
-        border-radius: 24px;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .subtext {
-        font-size: 16px;
-      }
-
-      .section-title {
-        font-size: 24px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card-inner {
-        min-height: 200px;
-      }
+    @media(max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 40px; }
     }
+
   </style>
 </head>
 
 <body>
   <div class="wrapper">
-    <section class="hero">
-      <div class="eyebrow">Alto AI Workspace</div>
-      <h1>Alto Dashboard</h1>
+
+    <div class="hero">
+      <div class="eyebrow">ALTO AI STUDIO</div>
+      <h1>Alto AI Studio</h1>
       <div class="subtext">
         Your central hub for AI tools, brand systems, visual assets, and buildouts.
-        Designed to grow with your ideas and give every tool a real home.
       </div>
 
-      <div class="hero-bottom">
-        <div class="mini-stats">
-          <div class="stat">
-            <div class="stat-label">Projects</div>
-            <div class="stat-value">4</div>
-          </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Projects</div>
+          <div class="stat-value">4</div>
+        </div>
 
-          <div class="stat">
-            <div class="stat-label">Status</div>
-            <div class="stat-value">Live</div>
-          </div>
+        <div class="stat">
+          <div class="stat-label">Status</div>
+          <div class="stat-value">Live</div>
+        </div>
 
-          <div class="stat">
-            <div class="stat-label">Focus</div>
-            <div class="stat-value">Build</div>
-          </div>
+        <div class="stat">
+          <div class="stat-label">Focus</div>
+          <div class="stat-value">Build</div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <div class="section-bar">
-      <div class="section-title">Workspace</div>
-      <div class="section-pill">Connected tools and future buildouts</div>
+    <div class="section">
+      <h2>Workspace</h2>
+      <div class="pill">Connected tools</div>
     </div>
 
     <div class="grid">
-      <a href="#" class="card-shell orange-shell">
-        <div class="card-inner">
-          <div>
-            <div class="card-top">
-              <div class="icon-box">🎯</div>
-              <div class="status">Coming Soon</div>
-            </div>
 
-            <div class="card-copy">
-              <div class="card-title">Targeter</div>
-              <div class="card-desc">
-                Find strong brand matches, partnership targets, and aligned opportunities.
-              </div>
-            </div>
-          </div>
-
-          <div class="card-action orange-btn">Open Tool</div>
-        </div>
+      <a href="#" class="card orange">
+        <div class="icon">🎯</div>
+        <div class="card-title">Targeter</div>
+        <div class="desc">Find brand matches and opportunities</div>
+        <div class="btn orange-btn">Open Tool</div>
       </a>
 
-      <a href="#" class="card-shell gold-shell">
-        <div class="card-inner">
-          <div>
-            <div class="card-top">
-              <div class="icon-box">📋</div>
-              <div class="status">Coming Soon</div>
-            </div>
-
-            <div class="card-copy">
-              <div class="card-title">Briefs</div>
-              <div class="card-desc">
-                Build cleaner strategy briefs, creative outlines, and polished planning docs.
-              </div>
-            </div>
-          </div>
-
-          <div class="card-action gold-btn">Open Tool</div>
-        </div>
+      <a href="#" class="card gold">
+        <div class="icon">📋</div>
+        <div class="card-title">Briefs</div>
+        <div class="desc">Create strategic and creative briefs</div>
+        <div class="btn gold-btn">Open Tool</div>
       </a>
 
-      <a href="#" class="card-shell rose-shell">
-        <div class="card-inner">
-          <div>
-            <div class="card-top">
-              <div class="icon-box">🖼️</div>
-              <div class="status">Library</div>
-            </div>
-
-            <div class="card-copy">
-              <div class="card-title">Brand Assets</div>
-              <div class="card-desc">
-                Keep logos, visual references, activation examples, and creative materials together.
-              </div>
-            </div>
-          </div>
-
-          <div class="card-action rose-btn">Open Library</div>
-        </div>
+      <a href="#" class="card rose">
+        <div class="icon">🖼️</div>
+        <div class="card-title">Brand Assets</div>
+        <div class="desc">Store visuals and creative materials</div>
+        <div class="btn rose-btn">Open Library</div>
       </a>
 
-      <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card-shell gray-shell">
-        <div class="card-inner">
-          <div>
-            <div class="card-top">
-              <div class="icon-box">✨</div>
-              <div class="status">Live Tool</div>
-            </div>
-
-            <div class="card-copy">
-              <div class="card-title">Shade Matcher</div>
-              <div class="card-desc">
-                Launch your working beauty AI tool directly from the dashboard in one click.
-              </div>
-            </div>
-          </div>
-
-          <div class="card-action gray-btn">Open Shade Matcher</div>
-        </div>
+      <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card gray">
+        <div class="icon">✨</div>
+        <div class="card-title">Shade Matcher</div>
+        <div class="desc">Launch your beauty AI tool</div>
+        <div class="btn gray-btn">Open Tool</div>
       </a>
+
     </div>
 
-    <div class="footer-note">
-      This is your live control center. As you build more tools, each card can connect to a real app, page, or workflow.
+    <div class="footer">
+      Your AI workspace is growing. More tools coming soon.
     </div>
+
   </div>
 </body>
 </html>
