@@ -28,6 +28,11 @@
       gap: 20px;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .card {
       padding: 20px;
       border-radius: 20px;
@@ -35,6 +40,7 @@
       border: 1px solid #333;
       transition: 0.3s;
       cursor: pointer;
+      display: block;
     }
 
     .card:hover {
@@ -64,10 +70,28 @@
     <h1>Alto Dashboard</h1>
 
     <div class="grid">
-      <div class="card orange">🎯 Targeter<br><span class="desc">Find brand matches</span></div>
-      <div class="card gold">📋 Briefs<br><span class="desc">Create strategy briefs</span></div>
-      <div class="card rose">🖼️ Brand Assets<br><span class="desc">Store visuals</span></div>
-      <div class="card gray">✨ Shade Matcher<br><span class="desc">Beauty AI tool</span></div>
+
+      <a href="#" class="card orange">
+        🎯 Targeter<br>
+        <span class="desc">Find brand matches</span>
+      </a>
+
+      <a href="#" class="card gold">
+        📋 Briefs<br>
+        <span class="desc">Create strategy briefs</span>
+      </a>
+
+      <a href="#" class="card rose">
+        🖼️ Brand Assets<br>
+        <span class="desc">Store visuals</span>
+      </a>
+
+      <!-- 🔥 THIS ONE IS CONNECTED -->
+      <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card gray">
+        ✨ Shade Matcher<br>
+        <span class="desc">Beauty AI tool</span>
+      </a>
+
     </div>
   </div>
 </body>
