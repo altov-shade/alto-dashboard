@@ -22,32 +22,17 @@
     a { text-decoration: none; color: inherit; }
 
     .wrapper {
-      width: 100%;
       max-width: 1400px;
       margin: 0 auto;
       padding: 36px 28px 60px;
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
       background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 30px;
       padding: 34px 32px 28px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-      backdrop-filter: blur(10px);
       margin-bottom: 28px;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(244,180,0,0.30), transparent 65%);
     }
 
     .eyebrow {
@@ -56,21 +41,25 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #f6c251;
-      background: rgba(244, 180, 0, 0.10);
-      border: 1px solid rgba(244, 180, 0, 0.20);
-      padding: 10px 14px;
-      border-radius: 999px;
-      display: inline-block;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     h1 { font-size: 52px; margin: 0; }
 
     .subtext {
-      margin-top: 14px;
+      margin-top: 10px;
       color: rgba(255,255,255,0.72);
-      font-size: 18px;
-      max-width: 760px;
+    }
+
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
     }
 
     .grid {
@@ -87,7 +76,6 @@
 
     .card-shell:hover {
       transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
     }
 
     .card-inner {
@@ -114,20 +102,19 @@
     .status {
       font-size: 11px;
       text-transform: uppercase;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
+      opacity: 0.6;
+      margin-top: 8px;
     }
 
     .card-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       margin: 14px 0 8px;
     }
 
     .card-desc {
       color: rgba(255,255,255,0.68);
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .card-action {
@@ -165,6 +152,10 @@
       </div>
     </section>
 
+    <div class="section-bar">
+      <div class="section-title">Workspace</div>
+    </div>
+
     <div class="grid">
 
       <!-- Targeter -->
@@ -172,6 +163,7 @@
         <div class="card-inner">
           <div>
             <div class="icon-box">🎯</div>
+            <div class="status">Coming Soon</div>
             <div class="card-title">Targeter</div>
             <div class="card-desc">Find aligned brands and partnership opportunities.</div>
           </div>
@@ -179,11 +171,12 @@
         </div>
       </a>
 
-      <!-- Briefs (NOW LIVE) -->
+      <!-- Briefs -->
       <a href="https://pavilion-brief-app.vercel.app/" target="_blank" class="card-shell gold-shell">
         <div class="card-inner">
           <div>
             <div class="icon-box">📋</div>
+            <div class="status">Live Tool</div>
             <div class="card-title">Briefs</div>
             <div class="card-desc">Create strategy briefs and polished planning docs.</div>
           </div>
@@ -196,6 +189,7 @@
         <div class="card-inner">
           <div>
             <div class="icon-box">🖼️</div>
+            <div class="status">Library</div>
             <div class="card-title">Brand Assets</div>
             <div class="card-desc">Store logos, visuals, and activation content.</div>
           </div>
@@ -208,6 +202,7 @@
         <div class="card-inner">
           <div>
             <div class="icon-box">🎬</div>
+            <div class="status">Live Tool</div>
             <div class="card-title">V Studio</div>
             <div class="card-desc">Create and test AI-powered visual content.</div>
           </div>
