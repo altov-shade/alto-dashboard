@@ -1,292 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Alto Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Alto Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(255,122,0,0.12), transparent 30%),
-    radial-gradient(circle at top right, rgba(194,24,91,0.14), transparent 30%),
-    linear-gradient(180deg, #08090c 0%, #101116 100%);
-  color: white;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 122, 0, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(194, 24, 91, 0.12), transparent 30%),
+        linear-gradient(180deg, #08090c 0%, #101116 100%);
+      color: white;
+      min-height: 100vh;
+    }
 
-.wrapper {
-  max-width: 1400px;
-  margin: auto;
-  padding: 36px 28px 60px;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-a { text-decoration: none; color: inherit; }
+    .wrapper {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 36px 28px 60px;
+    }
 
-/* HERO */
-.hero {
-  border-radius: 30px;
-  padding: 34px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  margin-bottom: 28px;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 30px;
+      padding: 34px 32px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      margin-bottom: 28px;
+    }
 
-.eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  color: #f4b400;
-  margin-bottom: 14px;
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(244,180,0,0.28), transparent 65%);
+      pointer-events: none;
+    }
 
-h1 {
-  margin: 0;
-  font-size: 52px;
-}
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f6c251;
+      background: rgba(244, 180, 0, 0.10);
+      border: 1px solid rgba(244, 180, 0, 0.20);
+      padding: 10px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
 
-.subtext {
-  margin-top: 12px;
-  color: rgba(255,255,255,0.7);
-  max-width: 700px;
-}
+    h1 {
+      margin: 0;
+      font-size: 52px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
 
-.mini-stats {
-  display: flex;
-  gap: 14px;
-  margin-top: 24px;
-}
+    .subtext {
+      max-width: 760px;
+      margin-top: 14px;
+      color: rgba(255,255,255,0.72);
+      font-size: 18px;
+      line-height: 1.6;
+    }
 
-.stat {
-  background: rgba(0,0,0,0.3);
-  padding: 14px 16px;
-  border-radius: 16px;
-}
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
 
-/* SECTION */
-.section-bar {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
+    .mini-stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-.section-title {
-  font-size: 28px;
-  font-weight: bold;
-}
+    .stat {
+      min-width: 140px;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 16px 18px;
+    }
 
-.section-pill {
-  font-size: 13px;
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.06);
-}
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.48);
+      margin-bottom: 8px;
+    }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
+    .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+    }
 
-/* 🔥 CARDS */
-.card {
-  border-radius: 24px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 10px 2px 18px;
+      flex-wrap: wrap;
+    }
 
-/* ✅ ALWAYS-ON GLOW */
-.orange {
-  background: linear-gradient(135deg, #ff7a00, #ff9a2f);
-  box-shadow: 0 0 30px rgba(255,122,0,0.25);
-  color: black;
-}
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-.gold {
-  background: linear-gradient(135deg, #f4b400, #ffd54f);
-  box-shadow: 0 0 30px rgba(244,180,0,0.25);
-  color: black;
-}
+    .section-pill {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+    }
 
-.rose {
-  background: linear-gradient(135deg, #c2185b, #ff4f8b);
-  box-shadow: 0 0 30px rgba(194,24,91,0.25);
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
 
-.gray {
-  background: linear-gradient(135deg, #7b8494, #aab3c2);
-  box-shadow: 0 0 25px rgba(120,130,150,0.25);
-}
+    .card-shell {
+      border-radius: 28px;
+      padding: 1px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* 🔥 STRONG HOVER */
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 60px rgba(255,255,255,0.15),
-              0 30px 60px rgba(0,0,0,0.5);
-}
+    .card-shell:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }
 
-/* 🔥 GLOSS EFFECT */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.25) 0%,
-    rgba(255,255,255,0.05) 40%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: 0.3s;
-}
+    .card-inner {
+      height: 100%;
+      min-height: 220px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
 
-.card:hover::before {
-  opacity: 1;
-}
+    .card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.14) 0%,
+        rgba(255,255,255,0.04) 30%,
+        rgba(255,255,255,0.00) 65%
+      );
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
 
-/* CONTENT */
-.card-top {
-  display: flex;
-  justify-content: space-between;
-}
+    .card-shell:hover .card-inner::before {
+      opacity: 1;
+    }
 
-.icon {
-  font-size: 26px;
-}
+    .card-shell:hover .card-inner {
+      border-color: rgba(255,255,255,0.14);
+    }
 
-.status {
-  font-size: 11px;
-  opacity: 0.7;
-}
+    .orange-shell .card-inner {
+      background: linear-gradient(180deg, rgba(37,24,16,0.96), rgba(24,18,16,0.98));
+      box-shadow: inset 0 0 38px rgba(255,122,0,0.10);
+    }
 
-.card-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 16px;
-}
+    .gold-shell .card-inner {
+      background: linear-gradient(180deg, rgba(39,34,16,0.96), rgba(24,21,15,0.98));
+      box-shadow: inset 0 0 38px rgba(244,180,0,0.10);
+    }
 
-.card-desc {
-  font-size: 14px;
-  margin-top: 8px;
-  opacity: 0.9;
-}
+    .rose-shell .card-inner {
+      background: linear-gradient(180deg, rgba(37,16,27,0.96), rgba(23,15,22,0.98));
+      box-shadow: inset 0 0 38px rgba(194,24,91,0.11);
+    }
 
-.btn {
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 14px;
-  text-align: center;
-  font-weight: bold;
-  background: rgba(0,0,0,0.2);
-}
+    .gray-shell .card-inner {
+      background: linear-gradient(180deg, rgba(22,28,38,0.96), rgba(17,21,30,0.98));
+      box-shadow: inset 0 0 38px rgba(140,150,170,0.10);
+    }
 
-/* FOOTER */
-.footer-note {
-  margin-top: 24px;
-  padding: 18px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.05);
-  text-align: center;
-}
+    .card-top,
+    .card-copy,
+    .card-action {
+      position: relative;
+      z-index: 1;
+    }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
 
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
-}
-</style>
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: rgba(255,255,255,0.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .status {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.60);
+      white-space: nowrap;
+    }
+
+    .card-copy {
+      margin-top: 18px;
+    }
+
+    .card-title {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .card-action {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-radius: 18px;
+      padding: 14px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .card-shell:hover .card-action {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    .orange-shell {
+      background: linear-gradient(135deg, rgba(255,122,0,0.95), rgba(255,166,0,0.40));
+    }
+
+    .gold-shell {
+      background: linear-gradient(135deg, rgba(244,180,0,0.95), rgba(255,221,87,0.40));
+    }
+
+    .rose-shell {
+      background: linear-gradient(135deg, rgba(194,24,91,0.96), rgba(255,112,98,0.34));
+    }
+
+    .gray-shell {
+      background: linear-gradient(135deg, rgba(125,132,148,0.92), rgba(176,188,204,0.28));
+    }
+
+    .orange-btn {
+      background: #ff7a00;
+      color: #111;
+    }
+
+    .gold-btn {
+      background: #f4b400;
+      color: #111;
+    }
+
+    .rose-btn {
+      background: #c2185b;
+      color: white;
+    }
+
+    .gray-btn {
+      background: #8d97aa;
+      color: white;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      padding: 20px 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.68);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1180px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrapper {
+        padding: 22px 18px 40px;
+      }
+
+      .hero {
+        padding: 24px 20px 22px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .subtext {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-inner {
+        min-height: 200px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrapper">
+  <div class="wrapper">
+    <section class="hero">
+      <div class="eyebrow">Alto AI Workspace</div>
+      <h1>Alto Dashboard</h1>
+      <div class="subtext">
+        Your central hub for AI tools, brand systems, visual assets, and buildouts.
+        Designed to grow with your ideas and give every tool a real home.
+      </div>
 
-<div class="hero">
-  <div class="eyebrow">ALTO AI WORKSPACE</div>
-  <h1>Alto Dashboard</h1>
+      <div class="hero-bottom">
+        <div class="mini-stats">
+          <div class="stat">
+            <div class="stat-label">Projects</div>
+            <div class="stat-value">4</div>
+          </div>
 
-  <div class="subtext">
-    Your central hub for AI tools, brand systems, visual assets, and buildouts.
-  </div>
+          <div class="stat">
+            <div class="stat-label">Status</div>
+            <div class="stat-value">Live</div>
+          </div>
 
-  <div class="mini-stats">
-    <div class="stat">Projects<br><b>4</b></div>
-    <div class="stat">Status<br><b>Live</b></div>
-    <div class="stat">Focus<br><b>Build</b></div>
-  </div>
-</div>
+          <div class="stat">
+            <div class="stat-label">Focus</div>
+            <div class="stat-value">Build</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="section-bar">
-  <div class="section-title">Workspace</div>
-  <div class="section-pill">Connected tools</div>
-</div>
-
-<div class="grid">
-
-<a href="#" class="card orange">
-  <div>
-    <div class="card-top">
-      <div class="icon">🎯</div>
-      <div class="status">Coming Soon</div>
+    <div class="section-bar">
+      <div class="section-title">Workspace</div>
+      <div class="section-pill">Connected tools and future buildouts</div>
     </div>
-    <div class="card-title">Targeter</div>
-    <div class="card-desc">Find brand matches</div>
-  </div>
-  <div class="btn">Open Tool</div>
-</a>
 
-<a href="#" class="card gold">
-  <div>
-    <div class="card-top">
-      <div class="icon">📋</div>
-      <div class="status">Coming Soon</div>
+    <div class="grid">
+      <a href="#" class="card-shell orange-shell">
+        <div class="card-inner">
+          <div>
+            <div class="card-top">
+              <div class="icon-box">🎯</div>
+              <div class="status">Coming Soon</div>
+            </div>
+
+            <div class="card-copy">
+              <div class="card-title">Targeter</div>
+              <div class="card-desc">
+                Find strong brand matches, partnership targets, and aligned opportunities.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action orange-btn">Open Tool</div>
+        </div>
+      </a>
+
+      <a href="#" class="card-shell gold-shell">
+        <div class="card-inner">
+          <div>
+            <div class="card-top">
+              <div class="icon-box">📋</div>
+              <div class="status">Coming Soon</div>
+            </div>
+
+            <div class="card-copy">
+              <div class="card-title">Briefs</div>
+              <div class="card-desc">
+                Build cleaner strategy briefs, creative outlines, and polished planning docs.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action gold-btn">Open Tool</div>
+        </div>
+      </a>
+
+      <a href="#" class="card-shell rose-shell">
+        <div class="card-inner">
+          <div>
+            <div class="card-top">
+              <div class="icon-box">🖼️</div>
+              <div class="status">Library</div>
+            </div>
+
+            <div class="card-copy">
+              <div class="card-title">Brand Assets</div>
+              <div class="card-desc">
+                Keep logos, visual references, activation examples, and creative materials together.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action rose-btn">Open Library</div>
+        </div>
+      </a>
+
+      <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card-shell gray-shell">
+        <div class="card-inner">
+          <div>
+            <div class="card-top">
+              <div class="icon-box">✨</div>
+              <div class="status">Live Tool</div>
+            </div>
+
+            <div class="card-copy">
+              <div class="card-title">Shade Matcher</div>
+              <div class="card-desc">
+                Launch your working beauty AI tool directly from the dashboard in one click.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action gray-btn">Open Shade Matcher</div>
+        </div>
+      </a>
     </div>
-    <div class="card-title">Briefs</div>
-    <div class="card-desc">Create strategy briefs</div>
-  </div>
-  <div class="btn">Open Tool</div>
-</a>
 
-<a href="#" class="card rose">
-  <div>
-    <div class="card-top">
-      <div class="icon">🖼️</div>
-      <div class="status">Library</div>
+    <div class="footer-note">
+      This is your live control center. As you build more tools, each card can connect to a real app, page, or workflow.
     </div>
-    <div class="card-title">Brand Assets</div>
-    <div class="card-desc">Store visuals</div>
   </div>
-  <div class="btn">Open Library</div>
-</a>
-
-<a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card gray">
-  <div>
-    <div class="card-top">
-      <div class="icon">✨</div>
-      <div class="status">Live Tool</div>
-    </div>
-    <div class="card-title">Shade Matcher</div>
-    <div class="card-desc">Beauty AI tool</div>
-  </div>
-  <div class="btn">Open Tool</div>
-</a>
-
-</div>
-
-<div class="footer-note">
-This is your live control center.
-</div>
-
-</div>
 </body>
 </html>
