@@ -1,275 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Alto AI Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Alto Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255,122,0,0.12), transparent 30%),
-        radial-gradient(circle at 80% 0%, rgba(194,24,91,0.14), transparent 30%),
-        linear-gradient(180deg, #050507 0%, #0f1014 100%);
+      font-family: Arial, sans-serif;
+      background: #0f0f10;
       color: white;
     }
 
-    a { text-decoration: none; color: inherit; }
-
-    .wrapper {
-      max-width: 1400px;
-      margin: auto;
-      padding: 40px 24px 60px;
-    }
-
-    /* HERO */
-    .hero {
-      border-radius: 30px;
-      padding: 36px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-      margin-bottom: 30px;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      color: #f4b400;
-      margin-bottom: 12px;
-      text-transform: uppercase;
+    .container {
+      padding: 30px;
     }
 
     h1 {
-      margin: 0;
-      font-size: 54px;
-      letter-spacing: -0.03em;
+      font-size: 36px;
+      margin-bottom: 20px;
     }
 
-    .subtext {
-      margin-top: 12px;
-      max-width: 700px;
-      color: rgba(255,255,255,0.7);
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .stat {
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 16px;
-      border-radius: 16px;
-      min-width: 120px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-    }
-
-    .stat-value {
-      font-size: 22px;
-      font-weight: bold;
-      margin-top: 6px;
-    }
-
-    /* SECTION */
-    .section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 20px 0;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    .pill {
-      font-size: 13px;
-      padding: 8px 14px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
 
     .card {
-      border-radius: 24px;
-      padding: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: all 0.25s ease;
+      padding: 20px;
+      border-radius: 20px;
+      background: #1a1a1d;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-
-    .card::after {
+    /* 🔥 GLASS HOVER EFFECT */
+    .card::before {
       content: "";
       position: absolute;
       inset: 0;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
       opacity: 0;
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
 
-    .card:hover::after {
+    .card:hover::before {
       opacity: 1;
     }
 
-    .orange::after { background: radial-gradient(circle, rgba(255,122,0,0.25), transparent 70%); }
-    .gold::after { background: radial-gradient(circle, rgba(244,180,0,0.25), transparent 70%); }
-    .rose::after { background: radial-gradient(circle, rgba(194,24,91,0.25), transparent 70%); }
-    .gray::after { background: radial-gradient(circle, rgba(120,130,150,0.25), transparent 70%); }
-
-    .icon {
-      font-size: 28px;
-      margin-bottom: 12px;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .card-title {
-      font-size: 22px;
-      font-weight: 700;
+    .orange { background: #ff7a00; color: black; }
+    .gold { background: #f4b400; color: black; }
+    .rose { background: #c2185b; }
+    .gray { background: #6b7280; }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
     }
 
     .desc {
       font-size: 14px;
       margin-top: 8px;
-      color: rgba(255,255,255,0.7);
+      opacity: 0.85;
+      position: relative;
+      z-index: 1;
     }
-
-    .btn {
-      margin-top: 18px;
-      padding: 12px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-      transform: scale(1.02);
-    }
-
-    .orange-btn { background: #ff7a00; color: black; }
-    .gold-btn { background: #f4b400; color: black; }
-    .rose-btn { background: #c2185b; }
-    .gray-btn { background: #7b8494; }
-
-    .footer {
-      margin-top: 24px;
-      padding: 18px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-    }
-
-    @media(max-width: 900px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media(max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 40px; }
-    }
-
   </style>
 </head>
 
 <body>
-  <div class="wrapper">
-
-    <div class="hero">
-      <div class="eyebrow">ALTO AI STUDIO</div>
-      <h1>Alto AI Studio</h1>
-      <div class="subtext">
-        Your central hub for AI tools, brand systems, visual assets, and buildouts.
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Projects</div>
-          <div class="stat-value">4</div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-label">Status</div>
-          <div class="stat-value">Live</div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-label">Focus</div>
-          <div class="stat-value">Build</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Workspace</h2>
-      <div class="pill">Connected tools</div>
-    </div>
+  <div class="container">
+    <h1>Alto Dashboard</h1>
 
     <div class="grid">
 
       <a href="#" class="card orange">
-        <div class="icon">🎯</div>
-        <div class="card-title">Targeter</div>
-        <div class="desc">Find brand matches and opportunities</div>
-        <div class="btn orange-btn">Open Tool</div>
+        <div class="title">🎯 Targeter</div>
+        <div class="desc">Find brand matches</div>
       </a>
 
       <a href="#" class="card gold">
-        <div class="icon">📋</div>
-        <div class="card-title">Briefs</div>
-        <div class="desc">Create strategic and creative briefs</div>
-        <div class="btn gold-btn">Open Tool</div>
+        <div class="title">📋 Briefs</div>
+        <div class="desc">Create strategy briefs</div>
       </a>
 
       <a href="#" class="card rose">
-        <div class="icon">🖼️</div>
-        <div class="card-title">Brand Assets</div>
-        <div class="desc">Store visuals and creative materials</div>
-        <div class="btn rose-btn">Open Library</div>
+        <div class="title">🖼️ Brand Assets</div>
+        <div class="desc">Store visuals</div>
       </a>
 
       <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card gray">
-        <div class="icon">✨</div>
-        <div class="card-title">Shade Matcher</div>
-        <div class="desc">Launch your beauty AI tool</div>
-        <div class="btn gray-btn">Open Tool</div>
+        <div class="title">✨ Shade Matcher</div>
+        <div class="desc">Beauty AI tool</div>
       </a>
 
     </div>
-
-    <div class="footer">
-      Your AI workspace is growing. More tools coming soon.
-    </div>
-
   </div>
 </body>
 </html>
