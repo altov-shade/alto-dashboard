@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Alto Dashboard</title>
-<link rel="apple-touch-icon" href="alto-icon.png">
+  <link rel="apple-touch-icon" href="alto-icon.png">
+  <link rel="icon" href="alto-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -148,7 +149,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 20px;
     }
 
@@ -257,6 +258,10 @@
       background: linear-gradient(135deg, rgba(125,132,148,0.95), rgba(176,188,204,0.28));
     }
 
+    .purple-shell {
+      background: linear-gradient(135deg, rgba(157,78,221,0.95), rgba(255,112,98,0.25));
+    }
+
     .orange-btn {
       background: #ff7a00;
       color: #111;
@@ -277,6 +282,11 @@
       color: white;
     }
 
+    .purple-btn {
+      background: #9d4edd;
+      color: white;
+    }
+
     .footer-note {
       margin-top: 24px;
       padding: 20px 22px;
@@ -288,7 +298,13 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 1180px) {
+    @media (max-width: 1320px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 920px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -340,7 +356,7 @@
         <div class="mini-stats">
           <div class="stat">
             <div class="stat-label">Projects</div>
-            <div class="stat-value">4</div>
+            <div class="stat-value">5</div>
           </div>
 
           <div class="stat">
@@ -363,13 +379,12 @@
 
     <div class="grid">
 
-      <!-- Targeter -->
       <a href="https://targeter-app.vercel.app" target="_blank" class="card-shell orange-shell">
         <div class="card-inner">
           <div>
             <div class="card-top">
               <div class="icon-box">🎯</div>
-              <div class="status">Coming Soon</div>
+              <div class="status">Live Tool</div>
             </div>
 
             <div class="card-copy">
@@ -384,7 +399,6 @@
         </div>
       </a>
 
-      <!-- Briefs (FIXED) -->
       <a href="https://pavilion-brief-app.vercel.app/" target="_blank" class="card-shell gold-shell">
         <div class="card-inner">
           <div>
@@ -405,7 +419,6 @@
         </div>
       </a>
 
-      <!-- Brand Assets -->
       <a href="#" class="card-shell rose-shell">
         <div class="card-inner">
           <div>
@@ -426,7 +439,6 @@
         </div>
       </a>
 
-      <!-- V Studio -->
       <a href="https://altov-v-studio-1086023065223.europe-west1.run.app/" target="_blank" class="card-shell gray-shell">
         <div class="card-inner">
           <div>
@@ -447,10 +459,30 @@
         </div>
       </a>
 
+      <a href="https://altov-shade-matcher.vercel.app/" target="_blank" class="card-shell purple-shell">
+        <div class="card-inner">
+          <div>
+            <div class="card-top">
+              <div class="icon-box">✨</div>
+              <div class="status">Coming Soon</div>
+            </div>
+
+            <div class="card-copy">
+              <div class="card-title">Shade Matcher</div>
+              <div class="card-desc">
+                AI shade matching experience currently being refined and calibrated.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-action purple-btn">Open Tool</div>
+        </div>
+      </a>
+
     </div>
 
     <div class="footer-note">
-      This is your live control center. As you build more tools, each card can connect to a real app, page, or workflow.
+      Built by Alto Gary | AI Tools • Systems • Creative Products
     </div>
   </div>
 </body>
